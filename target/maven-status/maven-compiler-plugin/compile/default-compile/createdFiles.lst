@@ -1,0 +1,5 @@
+com/mycompany/application1/security/JwtAuthConvterProperties.class
+com/mycompany/application1/security/JwtAuthConverter.class
+com/mycompany/application1/security/SecurityConfig.class
+com/mycompany/application1/controller/App1Controller.class
+com/mycompany/application1/Application1.class
