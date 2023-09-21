@@ -1,19 +1,18 @@
-package com.mycompany.application1;
+package com.mycompany.application2;
 
 import java.util.Arrays;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @SpringBootApplication
-public class Application1 {
+public class Application2 {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application1.class, args);
+        SpringApplication.run(Application2.class, args);
     }
     
     @Bean

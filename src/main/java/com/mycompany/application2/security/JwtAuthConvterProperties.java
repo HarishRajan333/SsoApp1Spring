@@ -1,4 +1,4 @@
-package com.mycompany.application1.security;
+package com.mycompany.application2.security;
 
 import lombok.Getter;
 import lombok.Setter;

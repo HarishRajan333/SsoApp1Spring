@@ -1,4 +1,4 @@
-package com.mycompany.application1.security;
+package com.mycompany.application2.security;
 
 import java.util.Collection;
 import java.util.Map;
@@ -16,11 +16,10 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationToken> {
 
-private final JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+    private final JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
 
     @Autowired
     private JwtAuthConvterProperties properties;
@@ -42,17 +41,19 @@ private final JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = ne
 //        }
 //        return jwt.getClaim(claimName);
 //    }
-
     Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt) {
         Map<String, Object> resourceAccess = jwt.getClaim("resource_access");
-        Map<String, Object> resource;
-        Collection<String> resourceRoles;
-        if (resourceAccess == null || (resource = (Map<String, Object>) resourceAccess.get(properties.getResourceId())) == null || (resourceRoles = (Collection<String>) resource.get("roles")) == null) {
+        String desiganition = jwt.getClaim("Designation");
+
+        Map<String, Object> resource = (Map<String, Object>) resourceAccess.get(properties.getResourceId());
+        Collection<String> resourceRoles = (Collection<String>) resource.get("roles");
+        resourceRoles.add((String) desiganition);
+        if (resourceAccess == null || resource == null || resourceRoles == null) {
             return Set.of();
         }
         return resourceRoles.stream()
                 .map(role -> new SimpleGrantedAuthority(role))
                 .collect(Collectors.toSet());
     }
-    
+
 }
